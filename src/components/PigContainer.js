@@ -8,6 +8,7 @@ export default class PigContainer extends Component {
         return(
             this.props.hogs.map(pig =>{
                 return (<PigCard
+                hideHog={this.props.hideHog}
                 key={pig.id}
                 pig={pig}
             />)}

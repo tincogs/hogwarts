@@ -1,23 +1,37 @@
 import React, { Component } from 'react'
+import CardBack from './CardBack'
+import CardFront from './CardFront'
 
 export default class PigCard extends Component {
 
-
-
-    displayDetails = () => {
-        const { specialty, greased, weight, 'highest medal achieved':medal } = this.props.pig
-        console.log(greased)
+    constructor() {
+        super()
+        
+        this.state = {
+             cardFlip: true
+        }
     }
+    
+
+    cardFlip = () => {
+            this.setState({
+                cardFlip: !this.state.cardFlip
+            })
+    }
+
+    // hidePig = (e) => {
+    //     e.target.parentElement.classList = "hidden"
+    //     // let children = e.target.parentElement.childNodes
+    //     // children.forEach(child => child.className += 'hidden')
+    //     // e.target.previousElementSibling.className += "hidden"
+    // }
 
 
     render() {
-        const { name } = this.props.pig
-        let pigImageName = name.split(" ").join("_").toLowerCase()
-        let pigImage = require(`../hog-imgs/${pigImageName}.jpg`)
         return (
-            <div className="ui seven wide column pigTile" onClick={this.displayDetails}>
-            <h3>{name}</h3>
-            <img src={pigImage} />
+            <div className="ui seven wide column pigTile" onClick={this.cardFlip}>
+            {this.state.cardFlip ? <CardFront pig={this.props.pig}/> : <CardBack pig={this.props.pig}/>}
+            <button onClick={this.props.hideHog}>Hide This Pig</button>
             </div>
         )
     }
