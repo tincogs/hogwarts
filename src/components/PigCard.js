@@ -10,8 +10,7 @@ export default class PigCard extends Component {
         this.state = {
              cardFlip: true
         }
-    }
-    
+    }    
 
     cardFlip = () => {
             this.setState({
@@ -31,7 +30,7 @@ export default class PigCard extends Component {
         return (
             <div className="ui seven wide column pigTile" onClick={this.cardFlip}>
             {this.state.cardFlip ? <CardFront pig={this.props.pig}/> : <CardBack pig={this.props.pig}/>}
-            <button onClick={this.props.hideHog}>Hide This Pig</button>
+            <button onClick={() => this.props.hideHog(this.props.pig.name)}>Hide This Pig</button>
             </div>
         )
     }
